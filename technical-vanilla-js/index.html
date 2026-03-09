@@ -3,13 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Technical Proof - Vanilla JS</title>
 
-    <link rel="stylesheet" href="01_reset.css">
-    <link rel="stylesheet" href="02_index.css">
+    <link rel="stylesheet" href="/styles/01_reset.css">
+    <link rel="stylesheet" href="/styles/02_fonts.css">
+    <link rel="stylesheet" href="/styles/03_index.css">
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
 </head>
 <body>
-    
+  <main>
+    <section id="add-item-section">
+        <form id="add-item-form">
+          <label>
+            <span>Add item to list</span>
+            <input
+              name="add-item"
+              id="add-item"
+              type="text"
+              placeholder="Type the text here..."
+              aria-label="Add new item"
+            >
+          </label>
+          <div class="grouped-buttons" style="justify-content: flex-end;">
+            <button type="submit" class="primary">Add</button>
+            <button class="outline">Cancel</button>
+
+          </div>
+        </form>
+    </section>
+    <section id="list-section">
+      <header>
+        <h1>This a technical proof</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing, elit mus primis nec inceptos. Lacinia habitasse arcu molestie maecenas cursus quam nunc, hendrerit posuere augue fames dictumst placerat porttitor, dis mi pharetra vestibulum venenatis phasellus.</p>
+      </header>
+      <div class="list">
+        <div class="list-item">Item 1</div>
+        <div class="list-item is-selected">Item 2</div>
+        <div class="list-item">Item 3</div>
+      </div>
+      <footer class="buttons">
+        <div class="left-buttons grouped-buttons">
+          <button aria-label="Undo action" class="undo-button outline">
+            <svg fill="none" viewBox="0 0 24 24">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+          </button>
+          <button class="delete-button outline">Delete</button>
+        </div>
+        <div class="right-buttons">
+          <button class="add-button primary">Add</button>
+        </div>
+      </footer>
+    </section>
+  </main>
 </body>
 </html>

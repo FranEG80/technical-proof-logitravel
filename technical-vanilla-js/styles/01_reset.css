@@ -1,0 +1,35 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul, li, figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  background-color: #f4f4f4; 
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button:focus, input:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}

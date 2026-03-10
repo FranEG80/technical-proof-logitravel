@@ -11,3 +11,4 @@
 * Se ha decidido usar Styled-components aunque actualmente no es lo más recomendable, siendo lo más optimo los css modules ya que actualmente CSS se ha actualizado tanto que hace innc‹esario usar frameworks postCSS.
 * Styled-components es simlar a SASS hciendo un wrap de estilos a una etiqueta html creanddo un nuevo componente o aplicandole un wrap a un componente ya existente
 * Para proyectos pequeños, pruebas de concepto o desarrollos rápidos sugeriría tailwindcss
+* Se ha usado RxJs ya que en la oferta piden conocimientos de él. Sigue siendo util en streams de datos, coordinación de eventos o asincronía compleja pero actualmente no es la opción por defecto de React (redux, zustand, react query...)

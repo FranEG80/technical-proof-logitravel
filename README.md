@@ -1,17 +1,74 @@
 # Technical Test - Logitravel Group
 
-This repository contains the technical test solution in two variants:
+Repository containing the Front-end technical test solution in two implementations:
 
-- `technical-react-ts`: implementation with React + TypeScript + Vite.
-- `technicaal-vanilla-js`: implementation in Vanilla JavaScript.
+- `technical-vanilla-js`: HTML + CSS + JavaScript Vanilla.
+- `technical-react-ts`: React + TypeScript + Vite.
 
-🚧 UNDER CONSTRUCTION 🚧
+## Test Goal
 
-## Technical Documentation
+Build an application to manage a list of text strings, meeting the following requirements:
 
-Solution details, decisions, and functional compliance are documented in:
+- Add non-empty items.
+- Select and delete one or multiple items.
+- Allow deletion with double click (desirable).
+- Allow undoing at least the last change (desirable).
 
-- [`documentation/technical_proof.md`](documentation/technical_proof.md)
+Full statement available at [`documentation/technical_proof.md`](documentation/technical_proof.md).
+
+## Repository Structure
+
+- `technical-vanilla-js/`: Vanilla JavaScript version.
+- `technical-react-ts/`: React + TypeScript version.
+- `documentation/`: notes and screenshots.
+
+## Requirements
+
+- Node.js 20+ (recommended).
+- pnpm (recommended, both projects include `pnpm-lock.yaml`).
+
+## Run
+
+### 1) React + TypeScript
+
+```bash
+cd technical-react-ts
+pnpm install
+pnpm dev
+```
+
+Application available at the URL shown by Vite (usually `http://localhost:5173`).
+
+### 2) Vanilla JavaScript
+
+You can open `technical-vanilla-js/index.html` directly in the browser or run a local server:
+
+```bash
+cd technical-vanilla-js
+pnpm dlx servor .
+```
+
+## Tests
+
+### React + TypeScript
+
+```bash
+cd technical-react-ts
+pnpm install
+pnpm test:run
+```
+
+Current result: `40` tests passing with Vitest.
+
+### Vanilla JavaScript
+
+```bash
+cd technical-vanilla-js
+pnpm install
+pnpm test
+```
+
+Note: Jest currently needs a `jsdom` environment setup to run `main.test.js` correctly.
 
 ## Screenshots
 
@@ -27,45 +84,6 @@ Solution details, decisions, and functional compliance are documented in:
 
 ![List with modal](documentation/screenshots/list_with_add_modal.png)
 
-## Quick Start
+## Additional Documentation
 
-### React + TypeScript
-
-```bash
-cd technical-react-ts
-pnpm install
-pnpm dev
-```
-
-### Vanilla JavaScript
-
-Open `proofs/technicaal-vanilla-js/index.html` directly in your browser or init a web server with
-
-* NPM
- ```bash
- cd technical-vanilla-js
- npx servor .
- ```
-
-* PNPM
- ```bash
- cd technical-vanilla-js
- pnpm dlx servor .
- ```
-
-## Tests
-
-### React + TypeScript
-
- ```bash
- cd technical-react-ts
- pnpm install
- pnpm run test
- ```
-
-### Vanilla JavaScript
-
- ```bash
- cd technical-vanilla-js
- pnpm run test
- ```
+- Development notes: [`documentation/notes.md`](documentation/notes.md)

@@ -1,13 +1,9 @@
-import {  } from 'react'
-import './App.css'
+import Home from './features/home';
 
 function App() {
-
   return (
-    <main>
-
-    </main>
-  )
+    <Home/>
+  );
 }
 
-export default App
+export default App;

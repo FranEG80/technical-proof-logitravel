@@ -26,7 +26,7 @@
           </label>
           <div class="grouped-buttons" style="justify-content: flex-end;">
             <button type="submit" class="primary">Add</button>
-            <button class="outline">Cancel</button>
+            <button type="button" class="outline cancel-button">Cancel</button>
 
           </div>
         </form>
@@ -38,18 +38,18 @@
       </header>
       <div class="list">
         <div class="list-item">Item 1</div>
-        <div class="list-item is-selected">Item 2</div>
+        <div class="list-item">Item 2</div>
         <div class="list-item">Item 3</div>
       </div>
       <footer class="buttons">
         <div class="left-buttons grouped-buttons">
-          <button aria-label="Undo action" class="undo-button outline">
+          <button aria-label="Undo action" class="undo-button outline" disabled aria-disabled="true">
             <svg fill="none" viewBox="0 0 24 24">
               <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
               <path d="M3 3v5h5"/>
             </svg>
           </button>
-          <button class="delete-button outline">Delete</button>
+          <button class="delete-button outline" disabled aria-disabled="true">Delete</button>
         </div>
         <div class="right-buttons">
           <button class="add-button primary">Add</button>
@@ -57,5 +57,6 @@
       </footer>
     </section>
   </main>
+    <script type="module" src="/main.js"></script>
 </body>
 </html>

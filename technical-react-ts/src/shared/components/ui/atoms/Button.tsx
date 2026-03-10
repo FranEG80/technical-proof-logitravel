@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-type ButtonVariant = 'primary' | 'outline';
+type Button$variant = 'primary' | 'outline';
 
 type ButtonProps = {
-  $variant?: ButtonVariant;
+  $variant?: Button$variant;
   $iconOnly?: boolean;
 };
 
@@ -38,10 +38,19 @@ export const Button = styled.button<ButtonProps>`
 
   &:hover {
     filter: brightness(0.95);
+    ${({ $variant = 'outline' }) => ($variant === 'primary' ? `filter: brightness(1.5);` : `filter: brightness(0.95);`)}
   }
 
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.blueMedium};
     outline-offset: 2px;
   }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+    `}
+
 `;

@@ -5,9 +5,12 @@ export const theme = {
     grayMedium: 'rgba(0, 0, 0, 0.12)',
     grayDark: 'rgba(204, 204, 204, 1)',
     grayLight: 'rgba(247, 247, 247, 1)',
+    grayOverlay: 'rgba(0, 0, 0, 0.1)',
     blueDark: 'rgba(50, 75, 255, 1)',
     blueMedium: 'rgba(161, 196, 253, 1)',
     blueLight: 'rgba(194, 233, 251, 1)',
+    textDisabled: 'rgba(153, 153, 153, 1)',
+    red: 'rgba(255, 77, 77, 1)',
   },
   radius: {
     lg: '20px',

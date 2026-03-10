@@ -8,7 +8,7 @@ export const Input = styled.input`
   font: inherit;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.textDisabled};
     opacity: 0.6;
   }
 `;

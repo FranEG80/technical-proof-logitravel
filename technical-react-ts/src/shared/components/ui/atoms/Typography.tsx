@@ -13,6 +13,11 @@ export const BodyText = styled.p`
 `;
 
 export const LabelText = styled.span`
-  font-size: 22px;
-  line-height: 1.3;
 `;
+
+export const ErrorText = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+`; 

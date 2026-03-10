@@ -18,6 +18,7 @@ export function AddItemModal({
 }: AddItemModalProps): ReactElement {
 
   const [error, setError] = useState<string | null>(null);
+  const CLOSE_ANIMATION_MS = 450;
 
   const handleClose = useCallback(() => {
     onDraftChange({ name: '' });
@@ -35,6 +36,18 @@ export function AddItemModal({
 
     return () => document.removeEventListener('keydown', handleEscapeClose);
   }, [handleClose]);
+
+  useEffect(() => {
+    if (isOpen) return;
+
+    const closeTimeout = window.setTimeout(() => {
+      onCloseAnimationEnd();
+    }, CLOSE_ANIMATION_MS);
+
+    return () => {
+      window.clearTimeout(closeTimeout);
+    };
+  }, [isOpen, onCloseAnimationEnd]);
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();

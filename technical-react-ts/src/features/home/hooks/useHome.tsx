@@ -17,8 +17,6 @@ export function useHome(): UseHomeReturn {
 
     return () => {
       streamSub.unsubscribe();
-      actions$.complete();
-      state$.complete();
     };
   }, [actions$, state$]);
 

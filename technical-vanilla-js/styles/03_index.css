@@ -140,7 +140,7 @@ main > section#add-item-section {
 button {
     padding: 15px 30px;
     border-radius: 50px;
-    font: normal normal medium 16px Montserrat;
+    font-size: 16px;
     line-height: 22px;
     text-align: center;
     text-transform: uppercase;

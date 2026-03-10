@@ -30,7 +30,7 @@ export const Button = styled.button<ButtonProps>`
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1.375;
-  padding: ${({ $iconOnly }) => ($iconOnly ? '15px' : '15px 30px')};
+  padding: 15px 30px;
   text-transform: uppercase;
   transition: filter 0.2s ease;
 

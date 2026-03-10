@@ -8,3 +8,6 @@
 
 ## Technical React TS
 * Como se ha hecho a medidas absolutas en el desarrollo `technical-vanilla-js` en este desarrollo se han aplicado sin medidas absolutas sino centrando con flex y grid
+* Se ha decidido usar Styled-components aunque actualmente no es lo más recomendable, siendo lo más optimo los css modules ya que actualmente CSS se ha actualizado tanto que hace innc‹esario usar frameworks postCSS.
+* Styled-components es simlar a SASS hciendo un wrap de estilos a una etiqueta html creanddo un nuevo componente o aplicandole un wrap a un componente ya existente
+* Para proyectos pequeños, pruebas de concepto o desarrollos rápidos sugeriría tailwindcss

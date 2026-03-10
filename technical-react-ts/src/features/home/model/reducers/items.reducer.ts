@@ -52,6 +52,8 @@ export function itemsReducer( state: ItemsState, action: ItemsAction): ItemsStat
       };
 
     case LIST_ACTION.DELETE_SELECTED:
+      if (state.items.every(item => !item.selected)) return state;
+      
       return {
         ...state,
         items: state.items.filter(item => !item.selected),

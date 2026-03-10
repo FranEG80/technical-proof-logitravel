@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
-import type { Dispatch } from 'react';
-import { MODAL_ACTION, type HomeAction } from '../model';
+import { MODAL_ACTION, type HomeDispatch } from '../model';
 
 type UseModalActionsParams = {
-  dispatch: Dispatch<HomeAction>;
+  dispatch: HomeDispatch;
 };
 
 export function useModalActions({ dispatch }: UseModalActionsParams) {

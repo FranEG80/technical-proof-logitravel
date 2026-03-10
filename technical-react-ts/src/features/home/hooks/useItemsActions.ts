@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
-import type { Dispatch } from 'react';
-import { LIST_ACTION, type AddItemDraft, type HomeAction } from '../model';
+import { LIST_ACTION, type AddItemDraft, type HomeDispatch } from '../model';
 
 type UseItemsActionsParams = {
-  dispatch: Dispatch<HomeAction>;
+  dispatch: HomeDispatch;
 };
 
 export function useItemsActions({ dispatch }: UseItemsActionsParams) {

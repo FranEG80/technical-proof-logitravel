@@ -35,6 +35,8 @@ export type HomeAction =
   | ItemsAction
 ;
 
+export type HomeDispatch = (action: HomeAction) => void;
+
 export type HomeActions = {
   openModal: () => void;
   closeModal: () => void;

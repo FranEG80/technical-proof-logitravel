@@ -22,6 +22,11 @@ Full statement available at [`documentation/technical_proof.md`](documentation/t
 - `technical-react-ts/`: React + TypeScript version.
 - `documentation/`: notes and screenshots.
 
+## Deploy URLs
+
+- Vanilla JavaScript: https://technical-proof-logitravel-vanilla.vercel.app/
+- React + TypeScript: https://technical-proof-logitravel-react-ts.vercel.app/
+
 ## Requirements
 
 - Node.js 20+ (recommended).

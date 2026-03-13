@@ -1,0 +1,45 @@
+.button {
+  border: 1px solid var(--color-blue-dark);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.375;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: filter 0.2s ease;
+}
+
+.primary {
+  background: var(--color-blue-dark);
+  color: var(--color-white);
+}
+
+.outline {
+  background: var(--color-white);
+  color: var(--color-blue-dark);
+}
+
+.button:hover {
+  filter: brightness(0.95);
+}
+
+.primary:hover {
+  filter: brightness(1.5);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-blue-medium);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

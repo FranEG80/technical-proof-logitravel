@@ -1,0 +1,26 @@
+.listItem {
+  width: 100%;
+  padding: 9px 15px;
+}
+
+.listItem:not(.disabled) {
+  cursor: pointer;
+}
+
+.listItem:focus-visible {
+  outline: 2px solid var(--color-blue-dark);
+  outline-offset: 2px;
+}
+
+.selected {
+  background: var(--color-blue-dark);
+  color: var(--color-white);
+}
+
+.disabled {
+  color: var(--color-text-disabled);
+}
+
+li {
+  list-style: none;
+}

@@ -1,0 +1,43 @@
+.modal {
+  width: min(700px, calc(100% - 32px));
+  min-height: 276px;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.modal::backdrop {
+  background: var(--color-gray-overlay);
+}
+
+.open {
+  animation: modalSlideDownIn 0.45s ease-out forwards;
+}
+
+.closing {
+  animation: modalSlideUpOut 0.45s ease-out forwards;
+}
+
+@keyframes modalSlideDownIn {
+  from {
+    transform: translateY(calc(-50vh - 100%));
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalSlideUpOut {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-50vh - 100%));
+  }
+}

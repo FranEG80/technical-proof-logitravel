@@ -6,12 +6,8 @@ type UseItemsActionsParams = {
 };
 
 export function useItemsActions({ dispatch }: UseItemsActionsParams) {
-  const handleDraft = useCallback((payload: Partial<AddItemDraft>) => {
-    dispatch({ type: LIST_ACTION.ADD_ITEM_DRAFT_CHANGED, payload });
-  }, [dispatch]);
-
-  const addItem = useCallback(() => {
-    dispatch({ type: LIST_ACTION.ADD_ITEM });
+  const addItem = useCallback((payload: Partial<AddItemDraft>) => {
+    dispatch({ type: LIST_ACTION.ADD_ITEM, payload  });
   }, [dispatch]);
 
   const selectItem = useCallback((id: string) => {
@@ -27,7 +23,6 @@ export function useItemsActions({ dispatch }: UseItemsActionsParams) {
   }, [dispatch]);
 
   return {
-    handleDraft,
     addItem,
     selectItem,
     deleteSelected,

@@ -2,9 +2,6 @@ import { LIST_ACTION } from '../actions/home.actions';
 import { historyActionTypes, type ItemsAction, type ItemsState } from '../home.types';
 
 export const initialItemsState: ItemsState = {
-  draft: {
-    name: '',
-  },
   items: [
     { id: crypto.randomUUID(), name: 'Item 1' },
     { id: crypto.randomUUID(), name: 'Item 2' },
@@ -15,14 +12,10 @@ export const initialItemsState: ItemsState = {
 
 export function itemsReducer( state: ItemsState, action: ItemsAction): ItemsState {
   switch (action.type) {
-    case LIST_ACTION.ADD_ITEM_DRAFT_CHANGED:
-      return {
-        ...state,
-        draft: { ...state.draft, ...action.payload },
-      };
-
     case LIST_ACTION.ADD_ITEM:
-      const itemName = state.draft.name.trim();
+      if (!action.payload.name) return state;
+
+      const itemName = action.payload.name.trim();
       if (!itemName) return state;
 
       const uuid = crypto.randomUUID();
@@ -33,7 +26,6 @@ export function itemsReducer( state: ItemsState, action: ItemsAction): ItemsStat
           ...state.items,
           { id: uuid, name: itemName, selected: false },
         ],
-        draft: { name: '' },
         history: [
           ...state.history,
           {

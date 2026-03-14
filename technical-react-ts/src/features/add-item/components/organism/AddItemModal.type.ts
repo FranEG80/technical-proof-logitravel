@@ -1,8 +1,8 @@
+import type { AddItemDraft } from "@/features/home/model";
+
 export type AddItemModalProps = {
   isOpen: boolean;
-  draft: { name: string };
-  onDraftChange: (draft: { name: string }) => void;
-  onConfirm: () => void;
+  onConfirm: (data: Partial<AddItemDraft>) => void;
   onRequestClose: () => void;
   onCloseAnimationEnd: () => void;
 };

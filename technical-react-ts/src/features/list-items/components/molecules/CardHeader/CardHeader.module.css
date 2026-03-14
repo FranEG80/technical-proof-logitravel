@@ -1,0 +1,6 @@
+.cardHeader {
+  margin-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}

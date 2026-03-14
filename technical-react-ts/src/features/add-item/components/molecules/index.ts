@@ -1,2 +1,1 @@
-export * from './ModalForm';
-export * from './ModalOverlay';
+export * from './ModalForm'

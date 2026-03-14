@@ -11,7 +11,6 @@
 ## Technical React + TypeScript
 
 - In this version, the absolute sizing approach from `technical-vanilla-js` was avoided, prioritizing centered layout and composition using `flex` and `grid`.
-- `styled-components` was chosen. Although `CSS Modules` is often a lighter and more maintainable option today, `styled-components` is still useful for style encapsulation per component.
-- `styled-components` works similarly to SASS in terms of composition, wrapping elements/components and applying co-located styles.
+- **CSS Modules** have been chosen for styling because they are currently the best option and more native to the ecosystem. **Styled-Components** has fallen out of favor as it require runtime execution and lead to worse performance compared to zero-runtime alternatives.
 - For small projects, proof of concepts, or fast iterations, `Tailwind CSS` can be a very productive alternative.
 - `RxJS` was included because the job posting requested knowledge of it. It remains especially useful for streams, event coordination, and complex async flows, although in React it is usually not the default option compared to Redux, Zustand, or React Query.

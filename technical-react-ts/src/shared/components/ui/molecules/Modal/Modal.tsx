@@ -8,6 +8,24 @@ import {
 import styles from './Modal.module.css';
 import type { ModalProps } from './Modal.type';
 
+function openDialog(dialog: HTMLDialogElement) {
+  if (typeof dialog.showModal === 'function') {
+    dialog.showModal();
+    return;
+  }
+
+  dialog.setAttribute('open', '');
+}
+
+function closeDialog(dialog: HTMLDialogElement) {
+  if (typeof dialog.close === 'function') {
+    dialog.close();
+    return;
+  }
+
+  dialog.removeAttribute('open');
+}
+
 export function Modal({
   isOpen,
   onRequestClose,
@@ -41,7 +59,7 @@ export function Modal({
     dialog.addEventListener('keydown', handleKeyDown);
 
     if (!dialog.open) {
-      dialog?.showModal();
+      openDialog(dialog);
     }
 
     return () => {
@@ -49,7 +67,7 @@ export function Modal({
       dialog.removeEventListener('keydown', handleKeyDown);
 
       if (dialog.open) {
-        dialog?.close();
+        closeDialog(dialog);
       }
     };
   }, [isOpen, onCloseAnimationEnd, onRequestClose]);

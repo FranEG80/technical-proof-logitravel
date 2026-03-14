@@ -28,6 +28,7 @@ function Home() {
       )}
       <ListSection
         items={items}
+        isModalVisible={isModalVisible}
         onAddClick={actions.openModal}
         onSelectItem={actions.selectItem}
         onDelete={actions.deleteSelected}

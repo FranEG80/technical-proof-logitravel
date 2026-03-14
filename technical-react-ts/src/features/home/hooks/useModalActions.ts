@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { MODAL_ACTION, type HomeDispatch } from '../model';
 
 type UseModalActionsParams = {
@@ -6,17 +5,17 @@ type UseModalActionsParams = {
 };
 
 export function useModalActions({ dispatch }: UseModalActionsParams) {
-  const openModal = useCallback(() => {
+  const openModal = () => {
     dispatch({ type: MODAL_ACTION.MODAL_OPEN });
-  }, [dispatch]);
+  }
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     dispatch({ type: MODAL_ACTION.MODAL_REQUEST_CLOSE });
-  }, [dispatch]);
+  }
 
-  const handleModalAnimationEnd = useCallback(() => {
+  const handleModalAnimationEnd = () => {
     dispatch({ type: MODAL_ACTION.MODAL_ANIMATION_END });
-  }, [dispatch]);
+  }
 
   return {
     openModal,

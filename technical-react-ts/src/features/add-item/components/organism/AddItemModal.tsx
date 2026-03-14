@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactElement, type SubmitEvent } from 'react';
+import { useEffect, useRef, useState, type ReactElement, type SubmitEvent } from 'react';
 
 import { LabelText, Button, Input, ErrorText } from '@/shared/components/ui/atoms';
 import { ButtonGroup, Modal } from '@/shared/components/ui/molecules';
@@ -41,10 +41,6 @@ export function AddItemModal({
     setData(value);
   };
 
-  const handleClose = useCallback(() => {
-    onRequestClose();
-  }, [onRequestClose]);
-
   useEffect(() => {
     if (isOpen) {
       inputRef.current?.focus();
@@ -56,7 +52,7 @@ export function AddItemModal({
     <Modal
       id="add-item-section"
       isOpen={isOpen}
-      onRequestClose={handleClose}
+      onRequestClose={onRequestClose}
       onCloseAnimationEnd={onCloseAnimationEnd}
       aria-labelledby="add-item-title"
     >
@@ -81,7 +77,7 @@ export function AddItemModal({
         </FormField>
         <ButtonGroup $justify="flex-end">
           <Button type="submit" $variant="primary">Add</Button>
-          <Button type="button" $variant="outline" onClick={handleClose}>Cancel</Button>
+          <Button type="button" $variant="outline" onClick={onRequestClose}>Cancel</Button>
         </ButtonGroup>
       </ModalForm>
     </Modal>

@@ -36,7 +36,7 @@ function ListSection({ onAddClick, onSelectItem, onDelete, onUndo, isHistoryEmpt
         </BodyText>
       </CardHeader>
 
-      <List role="listbox" >
+      <List tabIndex={0} aria-label='List items'>
         {items.length === 0 ? (
           <ListItem $disabled aria-disabled="true">No items yet</ListItem>
         ) : (
@@ -44,7 +44,6 @@ function ListSection({ onAddClick, onSelectItem, onDelete, onUndo, isHistoryEmpt
             <ListItem
               key={item.id}
               selected={item.selected}
-              role="option"
               aria-selected={item.selected}
               tabIndex={0}
               onClick={() => handleSelected(item.id)}

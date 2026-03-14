@@ -1,16 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 import Home from './Home';
-import { theme } from '../../shared/styles/theme';
+import '../../main.css';
 
 function renderApp() {
-  return render(
-    <ThemeProvider theme={theme}>
-      <Home />
-    </ThemeProvider>
-  );
+  return render(<Home />);
 }
 
 async function finishCloseAnimation(previousClassName?: string) {
@@ -51,6 +46,15 @@ describe('Home', () => {
 
     expect(screen.getByText('Add item to list')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Cancel' })).toBeInTheDocument();
+  });
+
+  it('focuses the input when opening the modal', async () => {
+    const user = userEvent.setup();
+    renderApp();
+
+    await user.click(screen.getByRole('button', { name: 'Add' }));
+
+    expect(screen.getByRole('textbox', { name: 'Add new item' })).toHaveFocus();
   });
 
   it('starts closing state when clicking Cancel', async () => {

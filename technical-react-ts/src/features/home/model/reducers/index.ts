@@ -19,7 +19,6 @@ function isModalAction(action: HomeAction): action is ModalAction {
 
 function isItemsAction(action: HomeAction): action is ItemsAction {
   return (
-    action.type === LIST_ACTION.ADD_ITEM_DRAFT_CHANGED ||
     action.type === LIST_ACTION.ADD_ITEM  ||
     action.type === LIST_ACTION.SELECT_ITEM ||
     action.type === LIST_ACTION.DELETE_SELECTED ||
@@ -37,8 +36,8 @@ export default function homeReducer(
     : state.Modal;
 
   const nextItems = isItemsAction(action)
-    ? itemsReducer({ draft: state.draft, items: state.items, history: state.history }, action)
-    : { draft: state.draft, items: state.items, history: state.history };
+    ? itemsReducer({ items: state.items, history: state.history }, action)
+    : { items: state.items, history: state.history };
 
   return {
     ...state,

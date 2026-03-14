@@ -1,0 +1,6 @@
+.formField {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { createHomeStateStream, initialHomeState, type HomeAction, type HomeState, type UseHomeReturn } from '../model';
+import { createHomeStateStream, initialHomeState, type AddItemDraft, type HomeAction, type HomeState, type UseHomeReturn } from '../model';
 import { useModalActions } from './useModalActions';
 import { useItemsActions } from './useItemsActions';
 
@@ -38,11 +38,10 @@ export function useHome(): UseHomeReturn {
   const ModalActions = useModalActions({ dispatch });
   const itemsActions = useItemsActions({ dispatch });
 
-  const addItem = useCallback(() => {
-    if (!state.draft.name.trim()) return;
-    itemsActions.addItem();
+  const addItem = useCallback((payload: Partial<AddItemDraft>) => {
+    itemsActions.addItem(payload);
     ModalActions.closeModal();
-  }, [state.draft.name, itemsActions, ModalActions]);
+  }, [itemsActions, ModalActions]);
 
   return {
     state,

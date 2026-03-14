@@ -1,0 +1,15 @@
+.homeLayout {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--color-blue-medium) 0%, var(--color-blue-light) 100%);
+}
+
+@media (max-width: 768px) {
+  .homeLayout {
+    padding: 5px;
+  }
+}

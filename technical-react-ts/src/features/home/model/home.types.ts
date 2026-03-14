@@ -19,7 +19,6 @@ export type HystoryEntry = {
 
 export type HomeState = {
   Modal: ModalState;
-  draft: AddItemDraft;
   items: Array<Item>;
   history: Array<HystoryEntry>;
 };
@@ -41,8 +40,7 @@ export type HomeActions = {
   openModal: () => void;
   closeModal: () => void;
   handleModalAnimationEnd: () => void;
-  handleDraft: (payload: Partial<AddItemDraft>) => void;
-  addItem: () => void;
+  addItem: (payload: Partial<AddItemDraft>) => void;
   selectItem: (id: string) => void;
   deleteSelected: () => void;
   undo: () => void;
@@ -56,12 +54,11 @@ export type UseHomeReturn = {
 export type AddItemDraft = Pick<Item, 'name'>;
 
 export type ItemsAction =
-  | { type: typeof LIST_ACTION.ADD_ITEM_DRAFT_CHANGED; payload: Partial<AddItemDraft> }
-  | { type: typeof LIST_ACTION.ADD_ITEM }
+  | { type: typeof LIST_ACTION.ADD_ITEM; payload: Partial<AddItemDraft> }
   | { type: typeof LIST_ACTION.SELECT_ITEM; payload: string }
   | { type: typeof LIST_ACTION.DELETE_SELECTED }
   | { type: typeof LIST_ACTION.UNDO }
 ;
 
 
-export type ItemsState = Pick<HomeState, 'draft' | 'items' | 'history'>;
+export type ItemsState = Pick<HomeState, 'items' | 'history'>;

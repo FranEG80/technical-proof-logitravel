@@ -1,0 +1,17 @@
+.card {
+  width: min(900px, calc(100% - 32px));
+  min-height: 577px;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 32px 20px;
+    min-height: auto;
+  }
+}

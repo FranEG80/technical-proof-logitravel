@@ -1,4 +1,4 @@
-import { memo, type ReactElement } from 'react';
+import { memo, type KeyboardEvent, type ReactElement } from 'react';
 import type { ListSectionProps } from './ListSection.type';
 
 import {
@@ -12,11 +12,18 @@ import { ButtonGroup, List, ListItem } from '@/shared/components/ui/molecules';
 import { Card, CardHeader, CardFooter} from '../molecules';
 
 function ListSection({ onAddClick, onSelectItem, onDelete, onUndo, isHistoryEmpty, items }: ListSectionProps): ReactElement {
-  
-
   const handleSelected = (id: string) => {
     onSelectItem(id);
-  }
+  };
+
+  const handleItemKeyDown = (event: KeyboardEvent<HTMLLIElement>, id: string) => {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+
+    event.preventDefault();
+    handleSelected(id);
+  };
 
   return (
     <Card id="list-section">
@@ -29,15 +36,18 @@ function ListSection({ onAddClick, onSelectItem, onDelete, onUndo, isHistoryEmpt
         </BodyText>
       </CardHeader>
 
-      <List>
+      <List tabIndex={0} aria-label='List items'>
         {items.length === 0 ? (
-          <ListItem $disabled>No items yet</ListItem>
+          <ListItem $disabled aria-disabled="true">No items yet</ListItem>
         ) : (
           items.map((item) => (
             <ListItem
               key={item.id}
               selected={item.selected}
+              aria-selected={item.selected}
+              tabIndex={0}
               onClick={() => handleSelected(item.id)}
+              onKeyDown={(event) => handleItemKeyDown(event, item.id)}
             >
               {item.name}
             </ListItem>

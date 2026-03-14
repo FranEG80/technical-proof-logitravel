@@ -1,8 +1,9 @@
-import type { ReactElement } from 'react';
+import { memo, type ReactElement } from 'react';
+
 import styles from './Button.module.css';
 import type { ButtonProps } from './Button.type';
 
-export function Button({
+function ButtonComponent({
   $variant = 'outline',
   $iconOnly,
   className,
@@ -17,3 +18,12 @@ export function Button({
     </button>
   );
 }
+
+export const Button = memo(ButtonComponent, (prevProps, nextProps) => {
+  return (
+    prevProps.$variant === nextProps.$variant && 
+    prevProps.$iconOnly === nextProps.$iconOnly &&
+    prevProps.className === nextProps.className &&
+    prevProps.disabled === nextProps.disabled
+  );
+});

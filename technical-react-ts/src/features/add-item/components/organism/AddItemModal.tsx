@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type ReactElement, type SubmitEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactElement, type SubmitEvent } from 'react';
 
 import { LabelText, Button, Input, ErrorText } from '@/shared/components/ui/atoms';
 import { ButtonGroup } from '@/shared/components/ui/molecules/ButtonGroup';
@@ -6,24 +6,49 @@ import { ButtonGroup } from '@/shared/components/ui/molecules/ButtonGroup';
 import { FormField } from '../atom';
 import { ModalForm, ModalOverlay } from '../molecules';
 import type { AddItemModalProps } from './AddItemModal.type';
+import type { AddItemDraft } from '@/features/home/model';
 
+const CLOSE_ANIMATION_MS = 450;
 
 export function AddItemModal({
   isOpen,
-  draft,
-  onDraftChange,
   onConfirm,
   onRequestClose,
   onCloseAnimationEnd,
 }: AddItemModalProps): ReactElement {
-
+  const [data, setData] = useState<AddItemDraft['name']>('');
   const [error, setError] = useState<string | null>(null);
-  const CLOSE_ANIMATION_MS = 450;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  
+  const isRightValue = (value: string) => {
+    return value.trim() !== '';
+  };
+
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (error) setError(null);
+    if (!isRightValue(data)) {
+      setError('Item cannot be empty');
+      return;
+    }
+    onConfirm({ name: data });
+  };
+
+  const handleStopPropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (error) setError(null);
+    const value = event.target.value;
+    setData(value);
+  };
 
   const handleClose = useCallback(() => {
-    onDraftChange({ name: '' });
     onRequestClose();
-  }, [onDraftChange, onRequestClose]);
+  }, [onRequestClose]);
 
   useEffect(() => {
     const handleEscapeClose = (event: KeyboardEvent) => {
@@ -49,25 +74,12 @@ export function AddItemModal({
     };
   }, [isOpen, onCloseAnimationEnd]);
 
-  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (error) setError(null);
-    if (draft.name.length === 0 || !draft.name.trim()) {
-      setError('Item cannot be empty');
-      return
+  useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus();
     }
-    onConfirm();
-  };
+  }, [isOpen]);
 
-  const handleStopPropagation = (event: React.MouseEvent) => {
-    event.stopPropagation();
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (error) setError(null);
-    onDraftChange({ name: event.target.value });
-  };
 
   return (
     <ModalOverlay
@@ -80,12 +92,13 @@ export function AddItemModal({
         <FormField htmlFor="add-item">
           <LabelText>Add item to list</LabelText>
           <Input
+            ref={inputRef}
             id="add-item"
             name="add-item"
             type="text"
             placeholder="Type the text here..."
             aria-label="Add new item"
-            value={draft.name}
+            value={data}
             onChange={handleChange}
           />
           {error && (

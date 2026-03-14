@@ -1,4 +1,4 @@
-import { memo, type KeyboardEvent, type ReactElement } from 'react';
+import { memo, useEffect, useRef, type KeyboardEvent, type ReactElement } from 'react';
 import type { ListSectionProps } from './ListSection.type';
 
 import {
@@ -11,7 +11,42 @@ import { ButtonGroup, List, ListItem } from '@/shared/components/ui/molecules';
 
 import { Card, CardHeader, CardFooter} from '../molecules';
 
-function ListSection({ onAddClick, onSelectItem, onDelete, onUndo, isHistoryEmpty, items }: ListSectionProps): ReactElement {
+function ListSection({
+  onAddClick,
+  onSelectItem,
+  onDelete,
+  onUndo,
+  isHistoryEmpty,
+  isModalVisible,
+  items,
+}: ListSectionProps): ReactElement {
+  const previousItemsCount = useRef(items.length);
+  const pendingFocusId = useRef<string | null>(null);
+
+  useEffect(() => {
+    const hasNewItem = items.length > previousItemsCount.current;
+
+    if (hasNewItem && isModalVisible) {
+      const lastItem = items[items.length - 1];
+      pendingFocusId.current = lastItem.id;
+    }
+
+    previousItemsCount.current = items.length;
+  }, [isModalVisible, items]);
+
+  useEffect(() => {
+    if (isModalVisible || !pendingFocusId.current) {
+      return;
+    }
+
+    const nextItem = document.getElementById(`list-item-${pendingFocusId.current}`);
+    nextItem?.focus();
+    if (typeof nextItem?.scrollIntoView === 'function') {
+      nextItem.scrollIntoView({ block: 'nearest' });
+    }
+    pendingFocusId.current = null;
+  }, [isModalVisible, items]);
+
   const handleSelected = (id: string) => {
     onSelectItem(id);
   };
@@ -36,12 +71,13 @@ function ListSection({ onAddClick, onSelectItem, onDelete, onUndo, isHistoryEmpt
         </BodyText>
       </CardHeader>
 
-      <List tabIndex={0} aria-label='List items'>
+      <List aria-label='List items'>
         {items.length === 0 ? (
           <ListItem $disabled aria-disabled="true">No items yet</ListItem>
         ) : (
           items.map((item) => (
             <ListItem
+              id={`list-item-${item.id}`}
               key={item.id}
               selected={item.selected}
               aria-selected={item.selected}

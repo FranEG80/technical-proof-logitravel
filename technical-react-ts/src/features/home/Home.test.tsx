@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Home from './Home';
 import '../../main.css';
@@ -19,8 +19,10 @@ async function finishCloseAnimation(previousClassName?: string) {
 
   const overlay = document.getElementById('add-item-section');
   if (overlay) {
-    overlay.dispatchEvent(new Event('animationend', { bubbles: true }));
-    fireEvent.animationEnd(overlay);
+    act(() => {
+      overlay.dispatchEvent(new Event('animationend', { bubbles: true }));
+      fireEvent.animationEnd(overlay);
+    });
   }
 
   await waitFor(() => {

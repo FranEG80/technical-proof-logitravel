@@ -1,10 +1,5 @@
 .modalForm {
-  width: min(700px, calc(100% - 32px));
-  min-height: 276px;
-  padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  gap: var(--spacing-lg);
 }

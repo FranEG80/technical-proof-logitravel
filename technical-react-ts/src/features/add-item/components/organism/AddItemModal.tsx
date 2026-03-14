@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useRef, useState, type ReactElement, type SubmitEvent } from 'react';
 
 import { LabelText, Button, Input, ErrorText } from '@/shared/components/ui/atoms';
-import { ButtonGroup } from '@/shared/components/ui/molecules/ButtonGroup';
+import { ButtonGroup, Modal } from '@/shared/components/ui/molecules';
+
+import { ModalForm } from '../molecules';
 
 import { FormField } from '../atom';
-import { ModalForm, ModalOverlay } from '../molecules';
 import type { AddItemModalProps } from './AddItemModal.type';
 import type { AddItemDraft } from '@/features/home/model';
-
-const CLOSE_ANIMATION_MS = 450;
 
 export function AddItemModal({
   isOpen,
@@ -36,10 +35,6 @@ export function AddItemModal({
     onConfirm({ name: data });
   };
 
-  const handleStopPropagation = (event: React.MouseEvent) => {
-    event.stopPropagation();
-  };
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (error) setError(null);
     const value = event.target.value;
@@ -51,30 +46,6 @@ export function AddItemModal({
   }, [onRequestClose]);
 
   useEffect(() => {
-    const handleEscapeClose = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        handleClose();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscapeClose);
-
-    return () => document.removeEventListener('keydown', handleEscapeClose);
-  }, [handleClose]);
-
-  useEffect(() => {
-    if (isOpen) return;
-
-    const closeTimeout = window.setTimeout(() => {
-      onCloseAnimationEnd();
-    }, CLOSE_ANIMATION_MS);
-
-    return () => {
-      window.clearTimeout(closeTimeout);
-    };
-  }, [isOpen, onCloseAnimationEnd]);
-
-  useEffect(() => {
     if (isOpen) {
       inputRef.current?.focus();
     }
@@ -82,15 +53,16 @@ export function AddItemModal({
 
 
   return (
-    <ModalOverlay
+    <Modal
       id="add-item-section"
-      $isOpen={isOpen}
-      onAnimationEnd={onCloseAnimationEnd}
-      onMouseDown={handleClose}
+      isOpen={isOpen}
+      onRequestClose={handleClose}
+      onCloseAnimationEnd={onCloseAnimationEnd}
+      aria-labelledby="add-item-title"
     >
-      <ModalForm id="add-item-form" onSubmit={handleSubmit} onMouseDown={handleStopPropagation}>
+      <ModalForm id="add-item-form" onSubmit={handleSubmit}>
         <FormField htmlFor="add-item">
-          <LabelText>Add item to list</LabelText>
+          <LabelText id="add-item-title">Add item to list</LabelText>
           <Input
             ref={inputRef}
             id="add-item"
@@ -112,6 +84,6 @@ export function AddItemModal({
           <Button type="button" $variant="outline" onClick={handleClose}>Cancel</Button>
         </ButtonGroup>
       </ModalForm>
-    </ModalOverlay>
+    </Modal>
   );
 }
